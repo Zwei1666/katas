@@ -8,23 +8,27 @@ namespace PotterKata1
         public static double CalculatePrice(params int [] books)
         {
             var price = BaseBookPrice * books.Length;
-            switch(books.Distinct().Count())
+            var distinctBooks = books.Distinct().Count();
+            var discount = GetDiscountFor(distinctBooks);
+
+            return price * discount;
+        }
+
+        private static double GetDiscountFor(int distinctBooks)
+        {
+            switch (distinctBooks)
             {
                 case 2:
-                    price *= 0.95;
-                    break;
+                    return 0.95;
                 case 3:
-                    price *= 0.9;
-                    break;
+                    return 0.9;
                 case 4:
-                    price *= 0.8;
-                    break;
+                    return 0.8;
                 case 5:
-                    price *= 0.75;
-                    break;
+                    return 0.75;
             }
 
-            return price;
+            return 1.0;
         }
     }
 }
