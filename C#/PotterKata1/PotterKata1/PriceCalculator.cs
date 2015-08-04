@@ -18,7 +18,9 @@ namespace PotterKata1
                 differentBookSetsCardinalities
                 .Zip( differentBookSetsCardinalities.Skip(1).Concat(new [] {0}), (i, next) => i - next)
                 .Select((numOfSets, i) => new GroupedSet {Cardinality = i+1, Count = numOfSets} );
+
             var setsOfGroupedDiscountBookSets = cardinalitiesOfSetsOfGroupedDiscountBookSets as GroupedSet[] ?? cardinalitiesOfSetsOfGroupedDiscountBookSets.ToArray();
+
             var numOfThreeFivePairsToTransform =
                 Math.Min(setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 3).FirstOrDefault().Count,
                     setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 5).FirstOrDefault().Count);
