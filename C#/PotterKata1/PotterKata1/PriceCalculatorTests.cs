@@ -31,5 +31,19 @@ namespace PotterKata1
             // Then
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [Test]
+        public void ShouldReturnDiscountedPriceForTwoDifferentbooks()
+        {
+            // Given
+            var books = new[] { 1, 2 };
+            var expectedPrice = 16.0 * 0.95;
+
+            // When
+            var price = PriceCalculator.CalculatePrice(books);
+
+            // Then
+            Assert.AreEqual(expectedPrice, price);
+        }
     }
 }
