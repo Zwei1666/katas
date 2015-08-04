@@ -8,9 +8,20 @@ namespace PotterKata1
         public static double CalculatePrice(params int [] books)
         {
             var price = BaseBookPrice * books.Length;
-            if (books.Distinct().Count() > 1)
+            switch(books.Distinct().Count())
             {
-                price *= 0.95;
+                case 2:
+                    price *= 0.95;
+                    break;
+                case 3:
+                    price *= 0.9;
+                    break;
+                case 4:
+                    price *= 0.8;
+                    break;
+                case 5:
+                    price *= 0.75;
+                    break;
             }
 
             return price;
