@@ -2,15 +2,12 @@
 
 namespace PotterKata1
 {
-    public class Basket
+    public class PriceCalculator
     {
-        public static double CalculatePrice(params int [] books)
-        {
-            return 8.0;
-        }
+        public static double CalculatePrice(params int [] books) => 8.0;
     }
 
-    public class BasketTests
+    public class PriceCalculatorTests
     {
         [Test]
         public void ShouldReturnUnmodifiedBasePriceForOneBook()
@@ -20,7 +17,7 @@ namespace PotterKata1
             var expectedPrice = 8.0;
 
            // When
-            var price = Basket.CalculatePrice(books);
+            var price = PriceCalculator.CalculatePrice(books);
 
             // Then
             Assert.AreEqual(expectedPrice, price);
