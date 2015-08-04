@@ -4,42 +4,12 @@ namespace PotterKata1
 {
     public class PriceCalculatorTests
     {
-        [Test]
-        public void ShouldReturnUnmodifiedBasePriceForOneBook()
+        [TestCase(8.0, new []{1})]
+        [TestCase(16.0, 1,1)]
+        [TestCase(16*0.95, 1,2)]
+        public void ShouldReturnProperPriceForVariousCombinationsOfBooks(double expectedPrice, params int [] books)
         {
-           // Given
-            var books = new[] {1};
-            var expectedPrice = 8.0;
-
            // When
-            var price = PriceCalculator.CalculatePrice(books);
-
-            // Then
-            Assert.AreEqual(expectedPrice, price);
-        }
-
-        [Test]
-        public void ShouldReturnUnmodifiedBasePriceForTwoSameBook()
-        {
-            // Given
-            var books = new[] { 1, 1 };
-            var expectedPrice = 16.0;
-
-            // When
-            var price = PriceCalculator.CalculatePrice(books);
-
-            // Then
-            Assert.AreEqual(expectedPrice, price);
-        }
-
-        [Test]
-        public void ShouldReturnDiscountedPriceForTwoDifferentbooks()
-        {
-            // Given
-            var books = new[] { 1, 2 };
-            var expectedPrice = 16.0 * 0.95;
-
-            // When
             var price = PriceCalculator.CalculatePrice(books);
 
             // Then
