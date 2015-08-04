@@ -13,9 +13,17 @@ namespace PotterKata1
     public class BasketTests
     {
         [Test]
-        public void FirstTest()
+        public void ShouldReturnUnmodifiedBasePriceForOneBook()
         {
-            Assert.Pass();
+           // Given
+            var books = new[] {1};
+            var expectedPrice = 8;
+
+           // When
+            var price = Basket.CalculatePrice(books);
+
+            // Then
+            Assert.AreEqual(expectedPrice, price);
         }
     }
 }
