@@ -2,9 +2,10 @@
 
 namespace PotterKata1
 {
-    public class PriceCalculator
+    public static class PriceCalculator
     {
-        public static double CalculatePrice(params int [] books) => 8.0 * books.Length;
+        private const double BaseBookPrice = 8.0;
+        public static double CalculatePrice(params int [] books) => BaseBookPrice * books.Length;
     }
 
     public class PriceCalculatorTests
