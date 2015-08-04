@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 
 namespace PotterKata1
 {
-    class Program
+    public class Basket
     {
-        static void Main(string[] args)
+        public static double CalculatePrice(params int [] books)
         {
+            return 0.0;
+        }
+    }
+
+    public class BasketTests
+    {
+        [Test]
+        public void FirstTest()
+        {
+            Assert.Pass();
         }
     }
 }
