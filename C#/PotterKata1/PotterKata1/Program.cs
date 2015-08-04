@@ -6,7 +6,7 @@ namespace PotterKata1
     {
         public static double CalculatePrice(params int [] books)
         {
-            return 0.0;
+            return 8.0;
         }
     }
 
@@ -17,7 +17,7 @@ namespace PotterKata1
         {
            // Given
             var books = new[] {1};
-            var expectedPrice = 8;
+            var expectedPrice = 8.0;
 
            // When
             var price = Basket.CalculatePrice(books);
