@@ -15,15 +15,33 @@ namespace TennisKata1
         {
             get
             {
-                return "love:love";
+                return PlayerA.Points+":"+PlayerB.Points;
             }
         }
 
         public class Player
         {
+            private int points = 0;
+
+            public string Points
+            {
+                get
+                {
+                    switch (points)
+                    {
+                        case 0:
+                            return "love";
+                        case 1:
+                            return "fifteen";
+                        default:
+                            return "";
+                    }
+                }
+            }
+
             public void AddPoint()
             {
-                throw new System.NotImplementedException();
+                points++;
             }
         }
     }
