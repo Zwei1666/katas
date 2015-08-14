@@ -25,6 +25,10 @@ namespace TennisKata1
                     {
                         return "Player A advantage";
                     }
+                    if (scoreB > scoreA)
+                    {
+                        return "Player B advantage";
+                    }
 
                     return "deuce";
                 }
