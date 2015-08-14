@@ -11,7 +11,9 @@ namespace TennisKata1
         [TestCase("AB", ExpectedResult = "fifteen:fifteen")]
         [TestCase("AA", ExpectedResult = "thirty:love")]
         [TestCase("AAA", ExpectedResult = "forty:love")]
-        public string StartingScoreShouldBeDisplayedProperly(string gameProcess)
+        [TestCase("AAABBB", ExpectedResult = "deuce")]
+
+        public string ScoreShouldBeDisplayedProperly(string gameProcess)
         {
             //Given
             var game = new Game();
