@@ -22,7 +22,10 @@ namespace TennisKata1
             {
                 var scoreA = PlayerA.Points;
                 var scoreB = PlayerB.Points;
-
+                if (scoreA > MinimalNumberOfPointsToWin && scoreA - scoreB > MinimalDifferenceInPointsToWin || scoreB > MinimalNumberOfPointsToWin && scoreB - scoreA > MinimalDifferenceInPointsToWin)
+                {
+                    throw new InvalidOperationException();
+                }
                 if (scoreA >= MinimalNumberOfPointsToWin && scoreA - scoreB >= MinimalDifferenceInPointsToWin)
                 {
                     return "Player A wins";
