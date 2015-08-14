@@ -33,6 +33,8 @@ namespace TennisKata1
                             return "love";
                         case 1:
                             return "fifteen";
+                        case 2:
+                            return "thirty";
                         default:
                             return "";
                     }
