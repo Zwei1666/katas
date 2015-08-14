@@ -14,8 +14,6 @@ namespace TennisKata1
             var expectedResult = "love:love";
 
             //When
-            game.PlayerA.SetPoints(0);
-            game.PlayerB.SetPoints(0);
             var result = game.Score;
 
             //Then
@@ -44,9 +42,9 @@ namespace TennisKata1
 
         public class Player
         {
-            public void SetPoints(int points)
+            public void AddPoint()
             {
-                //throw new System.NotImplementedException();
+                throw new System.NotImplementedException();
             }
         }
     }
