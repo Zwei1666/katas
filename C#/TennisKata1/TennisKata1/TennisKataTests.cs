@@ -1,6 +1,4 @@
-﻿using System.Media;
-using System.Security.Policy;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TennisKata1
 {
@@ -11,7 +9,7 @@ namespace TennisKata1
         {
             //Given
             var game = new Game();
-            var expectedResult = "love:love";
+            const string expectedResult = "love:love";
 
             //When
             var result = game.Score;
@@ -25,7 +23,7 @@ namespace TennisKata1
         {
             //Given
             var game = new Game();
-            var expectedResult = "fifteen:love";
+            const string expectedResult = "fifteen:love";
 
             //When
             game.PlayerA.AddPoint();

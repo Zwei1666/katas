@@ -15,19 +15,19 @@ namespace TennisKata1
         {
             get
             {
-                return PlayerA.Points+":"+PlayerB.Points;
+                return PlayerA.Points + ":" + PlayerB.Points;
             }
         }
 
         public class Player
         {
-            private int points = 0;
+            private int _points = 0;
 
             public string Points
             {
                 get
                 {
-                    switch (points)
+                    switch (_points)
                     {
                         case 0:
                             return "love";
@@ -41,7 +41,7 @@ namespace TennisKata1
 
             public void AddPoint()
             {
-                points++;
+                _points++;
             }
         }
     }
