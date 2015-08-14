@@ -35,6 +35,8 @@ namespace TennisKata1
                             return "fifteen";
                         case 2:
                             return "thirty";
+                        case 3:
+                            return "forty";
                         default:
                             return "";
                     }
