@@ -7,13 +7,28 @@ namespace TennisKata1
     public class TennisKataTests
     {
         [Test]
-        public void CurrentScoreShouldBeDisplayedProperly()
+        public void StartingScoreShouldBeDisplayedProperly()
         {
             //Given
             var game = new Game();
             var expectedResult = "love:love";
 
             //When
+            var result = game.Score;
+
+            //Then
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void ScoreAfterFirstBallShouldBeDisplayedProperly()
+        {
+            //Given
+            var game = new Game();
+            var expectedResult = "fifteen:love";
+
+            //When
+            game.PlayerA.AddPoint();
             var result = game.Score;
 
             //Then
