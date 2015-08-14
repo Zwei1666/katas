@@ -17,38 +17,43 @@ namespace TennisKata1
         {
             get
             {
-                var score = PlayerA.Points + ":" + PlayerB.Points;
-                return score == "forty:forty"? "deuce" : score;
+                var scoreA = PlayerA.Points;
+                var scoreB = PlayerB.Points;
+                if (scoreA >= 3 && scoreB >= 3)
+                {
+                    return "deuce";
+                }
+                else
+                {
+                    return GetScoreName(scoreA) + ":" + GetScoreName(scoreB);
+                }
+            }
+        }
+
+        private static string GetScoreName(int points)
+        {
+            switch (points)
+            {
+                case 0:
+                    return "love";
+                case 1:
+                    return "fifteen";
+                case 2:
+                    return "thirty";
+                case 3:
+                    return "forty";
+                default:
+                    throw new InvalidOperationException();
             }
         }
 
         public class Player
         {
-            private int _points = 0;
-
-            public string Points
-            {
-                get
-                {
-                    switch (_points)
-                    {
-                        case 0:
-                            return "love";
-                        case 1:
-                            return "fifteen";
-                        case 2:
-                            return "thirty";
-                        case 3:
-                            return "forty";
-                        default:
-                            throw new InvalidOperationException();
-                    }
-                }
-            }
+            public int Points { get; private set; }
 
             public void AddPoint()
             {
-                _points++;
+                Points++;
             }
         }
     }
