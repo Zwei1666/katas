@@ -19,14 +19,16 @@ namespace TennisKata1
             {
                 var scoreA = PlayerA.Points;
                 var scoreB = PlayerB.Points;
-                if (scoreA >= 3 && scoreB >= 3)
+                if (scoreA >= 3 && scoreB >= 3 && scoreA == scoreB)
                 {
                     return "deuce";
                 }
-                else
+                else if (scoreA >= 3 && scoreB >= 3)
                 {
-                    return GetScoreName(scoreA) + ":" + GetScoreName(scoreB);
+                    if (scoreA > scoreB)
+                        return "Player A advantage";
                 }
+                return GetScoreName(scoreA) + ":" + GetScoreName(scoreB);
             }
         }
 
