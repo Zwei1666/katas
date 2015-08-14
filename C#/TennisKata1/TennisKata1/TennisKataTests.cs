@@ -27,6 +27,17 @@ namespace TennisKata1
             return game.Score;
         }
 
+        [TestCase("AAAAA")]
+        public void ExceptionShouldBeThrownForInvalidScore(string gameProcess)
+        {
+            //Given
+            var game = new Game();
+            ProgressGame(game, gameProcess);
+
+            //When & Then
+            Assert.Throws<InvalidOperationException>(() => Utils.Ignore(game.Score) );
+        }
+
         private void ProgressGame(Game game, string gameProcess)
         {
             foreach (var round in gameProcess)
@@ -43,6 +54,13 @@ namespace TennisKata1
                         throw new ArgumentException(string.Format("Invalid symbol {0}", round), "gameProcess");
                 }
             }
+        }
+    }
+
+    public static class Utils
+    {
+        public static void Ignore<T>(T ignoredValude)
+        {
         }
     }
 }
