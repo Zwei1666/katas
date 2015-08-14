@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace TennisKata1
 {
@@ -14,21 +15,29 @@ namespace TennisKata1
         {
             //Given
             var game = new Game();
-            foreach (var round in gameProcess)
-            {
-                if (round == 'A')
-                {
-                    game.PlayerA.AddPoint();
-                }
-                else
-                {
-                    game.PlayerB.AddPoint();
-                }
-            }
+            ProgressGame(game, gameProcess);
             const string expectedResult = "love:love";
 
             //When & Then
             return game.Score;
+        }
+
+        private void ProgressGame(Game game, string gameProcess)
+        {
+            foreach (var round in gameProcess)
+            {
+                switch (round)
+                {
+                    case 'A':
+                        game.PlayerA.AddPoint();
+                        break;
+                    case 'B':
+                        game.PlayerB.AddPoint();
+                        break;
+                    default:
+                        throw new ArgumentException(string.Format("Invalid symbol {0}", round), "gameProcess");
+                }
+            }
         }
     }
 }

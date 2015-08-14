@@ -1,3 +1,5 @@
+using System;
+
 namespace TennisKata1
 {
     public class Game
@@ -38,7 +40,7 @@ namespace TennisKata1
                         case 3:
                             return "forty";
                         default:
-                            return "";
+                            throw new InvalidOperationException();
                     }
                 }
             }
