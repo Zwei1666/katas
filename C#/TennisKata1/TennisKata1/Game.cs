@@ -17,7 +17,8 @@ namespace TennisKata1
         {
             get
             {
-                return PlayerA.Points + ":" + PlayerB.Points;
+                var score = PlayerA.Points + ":" + PlayerB.Points;
+                return score == "forty:forty"? "deuce" : score;
             }
         }
 
