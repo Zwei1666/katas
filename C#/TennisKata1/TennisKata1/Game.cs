@@ -4,6 +4,9 @@ namespace TennisKata1
 {
     public class Game
     {
+        private const int MinimalNumberOfPointsToWin = 4;
+        private const int MinimalDifferenceInPointsToWin = 2;
+
         public Game()
         {
             PlayerA = new Player();
@@ -19,19 +22,16 @@ namespace TennisKata1
             {
                 var scoreA = PlayerA.Points;
                 var scoreB = PlayerB.Points;
-                if (scoreA - scoreB >= 2 || scoreB - scoreA >= 2)
-                {
-                    if (scoreA > scoreB && scoreA >= 4)
-                    {
-                        return "Player A wins";
-                    }
 
-                    if (scoreB > scoreA && scoreB >= 4)
-                    {
-                        return "Player B wins";
-                    }
+                if (scoreA >= MinimalNumberOfPointsToWin && scoreA - scoreB >= MinimalDifferenceInPointsToWin)
+                {
+                    return "Player A wins";
                 }
-                if (scoreA >= 3 && scoreB >= 3)
+                if ( scoreB >= MinimalNumberOfPointsToWin &&  scoreB - scoreA >= MinimalDifferenceInPointsToWin)
+                {
+                    return "Player B wins";
+                }
+                if (IsDeuceAdvantageSituation(scoreA, scoreB))
                 {
                     if(scoreA > scoreB)
                     {
@@ -48,6 +48,11 @@ namespace TennisKata1
 
                 return GetScoreName(scoreA) + ":" + GetScoreName(scoreB);
             }
+        }
+
+        private static bool IsDeuceAdvantageSituation(int scoreA, int scoreB)
+        {
+            return scoreA >= 3 && scoreB >= 3;
         }
 
         private static string GetScoreName(int points)
