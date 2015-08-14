@@ -22,7 +22,7 @@ namespace TennisKata1
             {
                 var scoreA = PlayerA.Points;
                 var scoreB = PlayerB.Points;
-                if (scoreA > MinimalNumberOfPointsToWin && scoreA - scoreB > MinimalDifferenceInPointsToWin || scoreB > MinimalNumberOfPointsToWin && scoreB - scoreA > MinimalDifferenceInPointsToWin)
+                if (IsInvalidSituation(scoreA, scoreB))
                 {
                     throw new InvalidOperationException();
                 }
@@ -51,6 +51,11 @@ namespace TennisKata1
 
                 return GetScoreName(scoreA) + ":" + GetScoreName(scoreB);
             }
+        }
+
+        private bool IsInvalidSituation(int scoreA, int scoreB)
+        {
+            return scoreA > MinimalNumberOfPointsToWin && scoreA - scoreB > MinimalDifferenceInPointsToWin || scoreB > MinimalNumberOfPointsToWin && scoreB - scoreA > MinimalDifferenceInPointsToWin;
         }
 
         private static bool IsDeuceAdvantageSituation(int scoreA, int scoreB)
