@@ -21,49 +21,50 @@ namespace PotterKata1
 
             var setsOfGroupedDiscountBookSets = cardinalitiesOfSetsOfGroupedDiscountBookSets as GroupedSet[] ?? cardinalitiesOfSetsOfGroupedDiscountBookSets.ToArray();
 
-            var numOfThreeFivePairsToTransform =
-                Math.Min(setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 3).FirstOrDefault().Count,
-                    setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 5).FirstOrDefault().Count);
-            var modifiedCardinalitiesOfSetsOfGroupedDiscountBookSets = setsOfGroupedDiscountBookSets
-                .Where(set => set.Cardinality != 3 && set.Cardinality != 5 && set.Cardinality != 4)
-                .Concat(new[]
-                {
-                    new GroupedSet
-                    {
-                        Count =
-                            setsOfGroupedDiscountBookSets
-                                .FirstOrDefault(set => set.Cardinality == 4)
-                                .Count + 2*numOfThreeFivePairsToTransform,
-                        Cardinality = 4
-                    }
-                })
-                .Concat(new[]
-                {
-                    new GroupedSet
-                    {
-                        Count =
-                            setsOfGroupedDiscountBookSets
-                                .FirstOrDefault(set => set.Cardinality == 3)
-                                .Count - numOfThreeFivePairsToTransform,
-                        Cardinality = 3
-                    }
-                })
-                .Concat(new[]
-                {
-                    new GroupedSet
-                    {
-                        Count =
-                            setsOfGroupedDiscountBookSets
-                                .FirstOrDefault(set => set.Cardinality == 5)
-                                .Count - numOfThreeFivePairsToTransform,
-                        Cardinality = 5
-                    }
-                });
+            var modifiedCardinalitiesOfSetsOfGroupedDiscountBookSets = Replace3And5ForTwo4(setsOfGroupedDiscountBookSets);
             var totalPrice =
                 modifiedCardinalitiesOfSetsOfGroupedDiscountBookSets.Select(sets => sets.Count * sets.Cardinality * BaseBookPrice * GetDiscountFor(sets.Cardinality))
                     .Sum();
 
             return totalPrice;
+        }
+
+        private static IEnumerable<GroupedSet> Replace3And5ForTwo4(GroupedSet[] setsOfGroupedDiscountBookSets)
+        {
+            var numOfThreeFivePairsToTransform =
+                Math.Min(
+                    setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 3).FirstOrDefault().Count,
+                    setsOfGroupedDiscountBookSets.Where(set => set.Cardinality == 5).FirstOrDefault().Count);
+            return setsOfGroupedDiscountBookSets.Where(
+                set => set.Cardinality != 3 && set.Cardinality != 5 && set.Cardinality != 4)
+                .Concat(
+                    new[]
+                        {
+                            new GroupedSet
+                                {
+                                    Count =
+                                        setsOfGroupedDiscountBookSets.FirstOrDefault(
+                                            set => set.Cardinality == 4).Count
+                                        + 2 * numOfThreeFivePairsToTransform,
+                                    Cardinality = 4
+                                },
+                            new GroupedSet
+                                {
+                                    Count =
+                                        setsOfGroupedDiscountBookSets.FirstOrDefault(
+                                            set => set.Cardinality == 3).Count
+                                        - numOfThreeFivePairsToTransform,
+                                    Cardinality = 3
+                                },
+                            new GroupedSet
+                                {
+                                    Count =
+                                        setsOfGroupedDiscountBookSets.FirstOrDefault(
+                                            set => set.Cardinality == 5).Count
+                                        - numOfThreeFivePairsToTransform,
+                                    Cardinality = 5
+                                }
+                        });
         }
 
         private static double GetDiscountFor(int distinctBooks)
